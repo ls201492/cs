@@ -142,10 +142,6 @@
 <table tableName="zy_user_feedback" ><generatedKey column="feedback_id" sqlStatement="JDBC"/></table>
 <table tableName="zy_user_info" ><generatedKey column="user_id" sqlStatement="JDBC"/></table>
 <table tableName="zy_user_login_log" ><generatedKey column="id" sqlStatement="JDBC"/></table>
--->
-<table tableName="zy_case_info" ><generatedKey column="case_id" sqlStatement="JDBC"/></table>
-<table tableName="zy_case_prospecting_info" ><generatedKey column="prospecting_id" sqlStatement="JDBC"/></table>
-<table tableName="zy_case_prospecting_user" ><generatedKey column="id" sqlStatement="JDBC"/></table>
 <table tableName="zy_data_change_log" ><generatedKey column="log_id" sqlStatement="JDBC"/></table>
 <table tableName="zy_learn_source" ><generatedKey column="source_id" sqlStatement="JDBC"/></table>
 <table tableName="zy_prospecting_inquiry" ><generatedKey column="inquiry_id" sqlStatement="JDBC"/></table>
@@ -154,6 +150,11 @@
 <table tableName="zy_prospecting_sampling_record" ><generatedKey column="sampling_id" sqlStatement="JDBC"/></table>
 <table tableName="zy_signature" ><generatedKey column="signature_id" sqlStatement="JDBC"/></table>
 <table tableName="zy_user_feedback" ><generatedKey column="feedback_id" sqlStatement="JDBC"/></table>
+-->
+<table tableName="zy_case_info" ><generatedKey column="case_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_case_prospecting_info" ><generatedKey column="prospecting_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_case_prospecting_user" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+
 	</context>
 
 </generatorConfiguration>
