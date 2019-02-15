@@ -27,7 +27,7 @@
 	</plugin>
 	
 	<plugin type="org.ihansen.mbp.extend.CustomPlugin">
-		<property name="pageHelperClass" value="com.zhanya.common.entity.PageHelper"/>
+		<property name="pageHelperClass" value="com.example.demo.common.entity.PageHelper"/>
 		<property name="dbType" value="MYSQL"/>
 	</plugin>
 
