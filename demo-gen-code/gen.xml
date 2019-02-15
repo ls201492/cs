@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- classPathEntry:数据库的JDBC驱动,换成你自己的驱动位置 -->
+	<classPathEntry location="mysql-connector-java-5.1.30.jar" />
+ 
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+	
+	<property name="autoDelimitKeywords" value="true"/>
+	<property name="beginningDelimiter" value="`"/>
+	<property name="endingDelimiter" value="`"/>  
+	<property name="useActualColumnNames" value="true"/>  
+	
+ <!-- 生成mapper的 
+  		<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+ 			<property name="targetPackage" value="conf"></property>
+ 			<property name="targetProject" value="result/resources"></property>
+ 		</plugin>
+ -->
+ 	<!-- 自定义序列化 -->
+	<plugin type="org.ihansen.mbp.extend.CustomSerializablePlugin"></plugin>
+
+	<!-- oracle/mysql/sqlserver方言插件 -->
+	
+	<plugin type="org.mybatis.generator.plugins.ToStringPlugin">
+		<property name="useToStringFromRoot" value="true" />
+	</plugin>
+	
+	<plugin type="org.ihansen.mbp.extend.CustomPlugin">
+		<property name="pageHelperClass" value="com.zhanya.common.entity.PageHelper"/>
+		<property name="dbType" value="MYSQL"/>
+	</plugin>
+
+		<!-- 去除自动生成的注释
+		 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.156:3306/qzkc" userId="root" password="!QAZ2wsx">
+		</jdbcConnection>
+
+		<javaTypeResolver >
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+ 
+		<!-- targetProject:自动生成代码的位置 -->
+		<javaModelGenerator targetPackage="com.example.demo.common.entity.auto" targetProject="../demo-common/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+
+		<sqlMapGenerator targetPackage="auto"  targetProject="../demo-common/src/main/resources/mapper">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.dao.auto"  targetProject="../demo-common/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+		<!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 
+			通过SQL找出所有需要生成SQL的TABLE记录
+			SELECT
+				CONCAT(
+					"<table tableName=\"",
+					t.t_name,
+					"\" >",
+					IFNULL(
+						(
+							SELECT
+								CONCAT(
+									"<generatedKey column=\"",
+									SS.COLUMN_NAME,
+									"\" sqlStatement=\"JDBC\"/>"
+								) AS xx
+							FROM
+								COLUMNS AS SS
+							WHERE
+								SS.EXTRA = 'auto_increment'
+							AND t.t_name = SS.TABLE_NAME
+							AND SS.TABLE_SCHEMA = 'qzkc'
+						),
+						''
+					),
+					"</table>"
+				) AS dd
+			FROM
+				(
+					SELECT DISTINCT
+						TABLE_NAME AS t_name
+					FROM
+						COLUMNS
+					WHERE
+						TABLE_SCHEMA = 'qzkc'
+				) AS t
+		-->
+<!--
+<table tableName="QRTZ_BLOB_TRIGGERS" ></table>
+<table tableName="QRTZ_CALENDARS" ></table>
+<table tableName="QRTZ_CRON_TRIGGERS" ></table>
+<table tableName="QRTZ_FIRED_TRIGGERS" ></table>
+<table tableName="QRTZ_JOB_DETAILS" ></table>
+<table tableName="QRTZ_LOCKS" ></table>
+<table tableName="QRTZ_PAUSED_TRIGGER_GRPS" ></table>
+<table tableName="QRTZ_SCHEDULER_STATE" ></table>
+<table tableName="QRTZ_SIMPLE_TRIGGERS" ></table>
+<table tableName="QRTZ_SIMPROP_TRIGGERS" ></table>
+<table tableName="QRTZ_TRIGGERS" ></table>
+<table tableName="schedule_job" ><generatedKey column="job_id" sqlStatement="JDBC"/></table>
+<table tableName="schedule_job_log" ><generatedKey column="log_id" sqlStatement="JDBC"/></table>
+<table tableName="sys_config" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="sys_dept" ><generatedKey column="dept_id" sqlStatement="JDBC"/></table>
+<table tableName="sys_dict" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="sys_log" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="sys_menu" ><generatedKey column="menu_id" sqlStatement="JDBC"/></table>
+<table tableName="sys_oss" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="sys_role" ><generatedKey column="role_id" sqlStatement="JDBC"/></table>
+<table tableName="sys_role_dept" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="sys_role_menu" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="sys_user" ><generatedKey column="user_id" sqlStatement="JDBC"/></table>
+<table tableName="sys_user_role" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="sys_version" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="zy_area" ><generatedKey column="area_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_case_info" ><generatedKey column="case_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_case_prospecting_info" ><generatedKey column="prospecting_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_case_prospecting_user" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="zy_data_change_log" ><generatedKey column="log_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_learn_source" ><generatedKey column="source_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_mobile_verify_code" ><generatedKey column="code_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_oss_file" ><generatedKey column="file_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_oss_file_batch" ></table>
+<table tableName="zy_prospecting_inquiry" ><generatedKey column="inquiry_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_prospecting_item" ></table>
+<table tableName="zy_prospecting_sampling_data" ><generatedKey column="data_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_prospecting_sampling_record" ><generatedKey column="sampling_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_signature" ><generatedKey column="signature_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_token" ></table>
+<table tableName="zy_user_column" ></table>
+<table tableName="zy_user_feedback" ><generatedKey column="feedback_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_user_info" ><generatedKey column="user_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_user_login_log" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+-->
+<table tableName="zy_case_info" ><generatedKey column="case_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_case_prospecting_info" ><generatedKey column="prospecting_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_case_prospecting_user" ><generatedKey column="id" sqlStatement="JDBC"/></table>
+<table tableName="zy_data_change_log" ><generatedKey column="log_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_learn_source" ><generatedKey column="source_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_prospecting_inquiry" ><generatedKey column="inquiry_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_prospecting_item" ></table>
+<table tableName="zy_prospecting_sampling_data" ><generatedKey column="data_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_prospecting_sampling_record" ><generatedKey column="sampling_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_signature" ><generatedKey column="signature_id" sqlStatement="JDBC"/></table>
+<table tableName="zy_user_feedback" ><generatedKey column="feedback_id" sqlStatement="JDBC"/></table>
+	</context>
+
+</generatorConfiguration>
