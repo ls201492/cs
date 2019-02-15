@@ -1,6 +1,6 @@
 package com.example.demo.dao.area;
 
-import com.example.demo.entity.User;
+import com.example.demo.common.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 /**

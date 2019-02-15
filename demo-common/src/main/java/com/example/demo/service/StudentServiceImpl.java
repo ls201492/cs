@@ -1,8 +1,7 @@
-package com.example.demo.service.impl;
+package com.example.demo.service;
 
+import com.example.demo.common.entity.User;
 import com.example.demo.dao.area.ZyAreaDao;
-import com.example.demo.entity.User;
-import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

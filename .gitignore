@@ -26,3 +26,4 @@
 /demo-admin/target/classes/com/example/demo/*.class
 /demo-admin/target/classes/com/example/demo/config/*.class
 *.class
+classes
