@@ -5,14 +5,14 @@ server:
     min-spare-threads: 30
     maxHttpHeaderSize: 10240000
     maxHttpPostSize: 10240000
-  port: 8080
+  port: 8081
   maxHttpHeaderSize: 10240000
   servlet:
     context-path: /
   #时间格式化
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
-  #时区设置
+    #时区设置
     time-zone: Asia/Chongqing
 spring:
   #  profiles:
@@ -43,7 +43,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.158:3306/cunli_xw_1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.1.156:3306/hmjh?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
     username: zhanyaa
     password: Zhanya2016abc!
     initial-size: 10

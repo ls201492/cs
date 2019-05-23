@@ -47,7 +47,7 @@ public class HelloController {
 
   @Scheduled(cron = "*/5 * * * * ?")
   public static void main() {
-    System.out.println("--------------");
+    System.out.println("test");
   }
 
 }

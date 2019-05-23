@@ -11,4 +11,9 @@ import org.apache.ibatis.annotations.Param;
 public interface ZyAreaDao {
 
   public User selectStudentById(@Param("id") Integer id);
+
+
+  void insertLF(@Param("title") String title, @Param("xm") String xn, @Param("nl") String nl,
+      @Param("jq") String jq, @Param("dq") String dq, @Param("zp") String zp,
+      @Param("nr") String content);
 }

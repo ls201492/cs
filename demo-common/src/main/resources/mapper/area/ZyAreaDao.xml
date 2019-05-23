@@ -7,4 +7,9 @@
     <select id="selectStudentById" resultType="com.example.demo.common.entity.User">
       select name as name from zy_user_info where user_id=#{id}
     </select>
+
+  <insert id="insertLF" parameterType="java.lang.String">
+    insert into zy_lfqg_0 (title, xm, nl, jg, dq, zp, nr)
+    VALUES (#{title}, #{xm}, #{nl}, #{jq}, #{dq}, #{zp}, #{nr})
+  </insert>
 </mapper>
