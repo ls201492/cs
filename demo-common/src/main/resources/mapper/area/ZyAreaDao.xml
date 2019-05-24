@@ -12,4 +12,7 @@
     insert into zy_lfqg_0 (title, xm, nl, jg, dq, zp, nr)
     VALUES (#{title}, #{xm}, #{nl}, #{jq}, #{dq}, #{zp}, #{nr})
   </insert>
+  <select id="selectContent" resultType="java.lang.Integer">
+    select count(1) from zy_lfqg_0 where title=#{title}
+  </select>
 </mapper>

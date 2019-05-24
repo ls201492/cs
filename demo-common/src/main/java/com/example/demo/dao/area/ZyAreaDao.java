@@ -16,4 +16,6 @@ public interface ZyAreaDao {
   void insertLF(@Param("title") String title, @Param("xm") String xn, @Param("nl") String nl,
       @Param("jq") String jq, @Param("dq") String dq, @Param("zp") String zp,
       @Param("nr") String content);
+
+  Integer selectContent(@Param("title") String title);
 }
