@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.auto.ZyCaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.common.entity.auto.ZyCaseInfo" >
+    <id column="case_id" property="caseId" jdbcType="INTEGER" />
+    <result column="case_no" property="caseNo" jdbcType="VARCHAR" />
+    <result column="case_name" property="caseName" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="prospecting_id" property="prospectingId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="show_example" property="showExample" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_uid" property="addUid" jdbcType="BIGINT" />
+    <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
+    <result column="last_update_uid" property="lastUpdateUid" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.common.entity.auto.ZyCaseInfo" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    case_id, case_no, case_name, `level`, prospecting_id, `status`, show_example, area_id, 
+    begin_time, end_time, add_time, add_uid, last_update, last_update_uid
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.example.demo.common.entity.auto.ZyCaseInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zy_case_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlDialectSuffix" />
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.common.entity.auto.ZyCaseInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zy_case_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlDialectSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zy_case_info
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from zy_case_info
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.common.entity.auto.ZyCaseInfoExample" >
+    delete from zy_case_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.common.entity.auto.ZyCaseInfo" useGeneratedKeys="true" keyProperty="caseId" >
+    insert into zy_case_info (case_no, case_name, `level`, 
+      prospecting_id, `status`, show_example, 
+      area_id, begin_time, end_time, 
+      add_time, add_uid, last_update, 
+      last_update_uid, remark)
+    values (#{caseNo,jdbcType=VARCHAR}, #{caseName,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{prospectingId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{showExample,jdbcType=INTEGER}, 
+      #{areaId,jdbcType=INTEGER}, #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{addUid,jdbcType=BIGINT}, #{lastUpdate,jdbcType=TIMESTAMP}, 
+      #{lastUpdateUid,jdbcType=BIGINT}, #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.common.entity.auto.ZyCaseInfo" useGeneratedKeys="true" keyProperty="caseId" >
+    insert into zy_case_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="caseNo != null" >
+        case_no,
+      </if>
+      <if test="caseName != null" >
+        case_name,
+      </if>
+      <if test="level != null" >
+        `level`,
+      </if>
+      <if test="prospectingId != null" >
+        prospecting_id,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="showExample != null" >
+        show_example,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUid != null" >
+        add_uid,
+      </if>
+      <if test="lastUpdate != null" >
+        last_update,
+      </if>
+      <if test="lastUpdateUid != null" >
+        last_update_uid,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="caseNo != null" >
+        #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="caseName != null" >
+        #{caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="prospectingId != null" >
+        #{prospectingId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="showExample != null" >
+        #{showExample,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUid != null" >
+        #{addUid,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdate != null" >
+        #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUid != null" >
+        #{lastUpdateUid,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.common.entity.auto.ZyCaseInfoExample" resultType="java.lang.Integer" >
+    select count(*) from zy_case_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zy_case_info
+    <set >
+      <if test="record.caseId != null" >
+        case_id = #{record.caseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.caseNo != null" >
+        case_no = #{record.caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseName != null" >
+        case_name = #{record.caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        `level` = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.prospectingId != null" >
+        prospecting_id = #{record.prospectingId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.showExample != null" >
+        show_example = #{record.showExample,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.beginTime != null" >
+        begin_time = #{record.beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addUid != null" >
+        add_uid = #{record.addUid,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastUpdate != null" >
+        last_update = #{record.lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateUid != null" >
+        last_update_uid = #{record.lastUpdateUid,jdbcType=BIGINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update zy_case_info
+    set case_id = #{record.caseId,jdbcType=INTEGER},
+      case_no = #{record.caseNo,jdbcType=VARCHAR},
+      case_name = #{record.caseName,jdbcType=VARCHAR},
+      `level` = #{record.level,jdbcType=INTEGER},
+      prospecting_id = #{record.prospectingId,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=INTEGER},
+      show_example = #{record.showExample,jdbcType=INTEGER},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      begin_time = #{record.beginTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      add_uid = #{record.addUid,jdbcType=BIGINT},
+      last_update = #{record.lastUpdate,jdbcType=TIMESTAMP},
+      last_update_uid = #{record.lastUpdateUid,jdbcType=BIGINT},
+      remark = #{record.remark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zy_case_info
+    set case_id = #{record.caseId,jdbcType=INTEGER},
+      case_no = #{record.caseNo,jdbcType=VARCHAR},
+      case_name = #{record.caseName,jdbcType=VARCHAR},
+      `level` = #{record.level,jdbcType=INTEGER},
+      prospecting_id = #{record.prospectingId,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=INTEGER},
+      show_example = #{record.showExample,jdbcType=INTEGER},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      begin_time = #{record.beginTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      add_uid = #{record.addUid,jdbcType=BIGINT},
+      last_update = #{record.lastUpdate,jdbcType=TIMESTAMP},
+      last_update_uid = #{record.lastUpdateUid,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.common.entity.auto.ZyCaseInfo" >
+    update zy_case_info
+    <set >
+      <if test="caseNo != null" >
+        case_no = #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="caseName != null" >
+        case_name = #{caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        `level` = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="prospectingId != null" >
+        prospecting_id = #{prospectingId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="showExample != null" >
+        show_example = #{showExample,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUid != null" >
+        add_uid = #{addUid,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdate != null" >
+        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUid != null" >
+        last_update_uid = #{lastUpdateUid,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.common.entity.auto.ZyCaseInfo" >
+    update zy_case_info
+    set case_no = #{caseNo,jdbcType=VARCHAR},
+      case_name = #{caseName,jdbcType=VARCHAR},
+      `level` = #{level,jdbcType=INTEGER},
+      prospecting_id = #{prospectingId,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      show_example = #{showExample,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_uid = #{addUid,jdbcType=BIGINT},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      last_update_uid = #{lastUpdateUid,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.common.entity.auto.ZyCaseInfo" >
+    update zy_case_info
+    set case_no = #{caseNo,jdbcType=VARCHAR},
+      case_name = #{caseName,jdbcType=VARCHAR},
+      `level` = #{level,jdbcType=INTEGER},
+      prospecting_id = #{prospectingId,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      show_example = #{showExample,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_uid = #{addUid,jdbcType=BIGINT},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      last_update_uid = #{lastUpdateUid,jdbcType=BIGINT}
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectSuffix" >
+    <if test="pageHelper != null" >
+      <![CDATA[ limit #{pageHelper.begin}, #{pageHelper.length}]]>
+    </if>
+  </sql>
+  <insert id="insertBatch" parameterType="com.example.demo.common.entity.auto.ZyCaseInfo" >
+    insert into zy_case_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      case_id,case_no,case_name,level,prospecting_id,status,show_example,area_id,begin_time,end_time,add_time,add_uid,last_update,last_update_uid,remark,
+    </trim>
+    values
+    <foreach collection="list" index="index" item="item" separator="," >
+      (
+      <trim suffixOverrides="," >
+        #{item.caseId,jdbcType=INTEGER},#{item.caseNo,jdbcType=VARCHAR},#{item.caseName,jdbcType=VARCHAR},#{item.level,jdbcType=INTEGER},#{item.prospectingId,jdbcType=INTEGER},#{item.status,jdbcType=INTEGER},#{item.showExample,jdbcType=INTEGER},#{item.areaId,jdbcType=INTEGER},#{item.beginTime,jdbcType=TIMESTAMP},#{item.endTime,jdbcType=TIMESTAMP},#{item.addTime,jdbcType=TIMESTAMP},#{item.addUid,jdbcType=BIGINT},#{item.lastUpdate,jdbcType=TIMESTAMP},#{item.lastUpdateUid,jdbcType=BIGINT},#{item.remark,jdbcType=LONGVARCHAR},
+      </trim>
+      )
+    </foreach>
+  </insert>
+</mapper>

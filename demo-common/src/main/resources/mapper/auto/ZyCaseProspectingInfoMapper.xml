@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.auto.ZyCaseProspectingInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.common.entity.auto.ZyCaseProspectingInfo" >
+    <id column="prospecting_id" property="prospectingId" jdbcType="INTEGER" />
+    <result column="case_id" property="caseId" jdbcType="INTEGER" />
+    <result column="undertake_unit" property="undertakeUnit" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="plan" property="plan" jdbcType="VARCHAR" />
+    <result column="temperature" property="temperature" jdbcType="VARCHAR" />
+    <result column="weather" property="weather" jdbcType="VARCHAR" />
+    <result column="humidity" property="humidity" jdbcType="VARCHAR" />
+    <result column="ray" property="ray" jdbcType="VARCHAR" />
+    <result column="scene_desc" property="sceneDesc" jdbcType="VARCHAR" />
+    <result column="scene_map_file_id" property="sceneMapFileId" jdbcType="BIGINT" />
+    <result column="sample_flow_type" property="sampleFlowType" jdbcType="INTEGER" />
+    <result column="sample_flow_remark2" property="sampleFlowRemark2" jdbcType="VARCHAR" />
+    <result column="signatures" property="signatures" jdbcType="VARCHAR" />
+    <result column="witness" property="witness" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_uid" property="addUid" jdbcType="BIGINT" />
+    <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.common.entity.auto.ZyCaseProspectingInfo" extends="BaseResultMap" >
+    <result column="sample_flow_remark1" property="sampleFlowRemark1" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    prospecting_id, case_id, undertake_unit, address, `plan`, temperature, weather, humidity, 
+    ray, scene_desc, scene_map_file_id, sample_flow_type, sample_flow_remark2, signatures, 
+    witness, add_time, add_uid, last_update, begin_time, end_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    sample_flow_remark1
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zy_case_prospecting_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlDialectSuffix" />
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zy_case_prospecting_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlDialectSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zy_case_prospecting_info
+    where prospecting_id = #{prospectingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from zy_case_prospecting_info
+    where prospecting_id = #{prospectingId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfoExample" >
+    delete from zy_case_prospecting_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfo" useGeneratedKeys="true" keyProperty="prospectingId" >
+    insert into zy_case_prospecting_info (case_id, undertake_unit, address, 
+      `plan`, temperature, weather, 
+      humidity, ray, scene_desc, 
+      scene_map_file_id, sample_flow_type, sample_flow_remark2, 
+      signatures, witness, add_time, 
+      add_uid, last_update, begin_time, 
+      end_time, sample_flow_remark1)
+    values (#{caseId,jdbcType=INTEGER}, #{undertakeUnit,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{plan,jdbcType=VARCHAR}, #{temperature,jdbcType=VARCHAR}, #{weather,jdbcType=VARCHAR}, 
+      #{humidity,jdbcType=VARCHAR}, #{ray,jdbcType=VARCHAR}, #{sceneDesc,jdbcType=VARCHAR}, 
+      #{sceneMapFileId,jdbcType=BIGINT}, #{sampleFlowType,jdbcType=INTEGER}, #{sampleFlowRemark2,jdbcType=VARCHAR}, 
+      #{signatures,jdbcType=VARCHAR}, #{witness,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{addUid,jdbcType=BIGINT}, #{lastUpdate,jdbcType=TIMESTAMP}, #{beginTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{sampleFlowRemark1,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfo" useGeneratedKeys="true" keyProperty="prospectingId" >
+    insert into zy_case_prospecting_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="caseId != null" >
+        case_id,
+      </if>
+      <if test="undertakeUnit != null" >
+        undertake_unit,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="plan != null" >
+        `plan`,
+      </if>
+      <if test="temperature != null" >
+        temperature,
+      </if>
+      <if test="weather != null" >
+        weather,
+      </if>
+      <if test="humidity != null" >
+        humidity,
+      </if>
+      <if test="ray != null" >
+        ray,
+      </if>
+      <if test="sceneDesc != null" >
+        scene_desc,
+      </if>
+      <if test="sceneMapFileId != null" >
+        scene_map_file_id,
+      </if>
+      <if test="sampleFlowType != null" >
+        sample_flow_type,
+      </if>
+      <if test="sampleFlowRemark2 != null" >
+        sample_flow_remark2,
+      </if>
+      <if test="signatures != null" >
+        signatures,
+      </if>
+      <if test="witness != null" >
+        witness,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUid != null" >
+        add_uid,
+      </if>
+      <if test="lastUpdate != null" >
+        last_update,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="sampleFlowRemark1 != null" >
+        sample_flow_remark1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="caseId != null" >
+        #{caseId,jdbcType=INTEGER},
+      </if>
+      <if test="undertakeUnit != null" >
+        #{undertakeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="plan != null" >
+        #{plan,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="weather != null" >
+        #{weather,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="ray != null" >
+        #{ray,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneDesc != null" >
+        #{sceneDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneMapFileId != null" >
+        #{sceneMapFileId,jdbcType=BIGINT},
+      </if>
+      <if test="sampleFlowType != null" >
+        #{sampleFlowType,jdbcType=INTEGER},
+      </if>
+      <if test="sampleFlowRemark2 != null" >
+        #{sampleFlowRemark2,jdbcType=VARCHAR},
+      </if>
+      <if test="signatures != null" >
+        #{signatures,jdbcType=VARCHAR},
+      </if>
+      <if test="witness != null" >
+        #{witness,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUid != null" >
+        #{addUid,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdate != null" >
+        #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sampleFlowRemark1 != null" >
+        #{sampleFlowRemark1,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfoExample" resultType="java.lang.Integer" >
+    select count(*) from zy_case_prospecting_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zy_case_prospecting_info
+    <set >
+      <if test="record.prospectingId != null" >
+        prospecting_id = #{record.prospectingId,jdbcType=INTEGER},
+      </if>
+      <if test="record.caseId != null" >
+        case_id = #{record.caseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.undertakeUnit != null" >
+        undertake_unit = #{record.undertakeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plan != null" >
+        `plan` = #{record.plan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temperature != null" >
+        temperature = #{record.temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weather != null" >
+        weather = #{record.weather,jdbcType=VARCHAR},
+      </if>
+      <if test="record.humidity != null" >
+        humidity = #{record.humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ray != null" >
+        ray = #{record.ray,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sceneDesc != null" >
+        scene_desc = #{record.sceneDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sceneMapFileId != null" >
+        scene_map_file_id = #{record.sceneMapFileId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sampleFlowType != null" >
+        sample_flow_type = #{record.sampleFlowType,jdbcType=INTEGER},
+      </if>
+      <if test="record.sampleFlowRemark2 != null" >
+        sample_flow_remark2 = #{record.sampleFlowRemark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signatures != null" >
+        signatures = #{record.signatures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.witness != null" >
+        witness = #{record.witness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addUid != null" >
+        add_uid = #{record.addUid,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastUpdate != null" >
+        last_update = #{record.lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.beginTime != null" >
+        begin_time = #{record.beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sampleFlowRemark1 != null" >
+        sample_flow_remark1 = #{record.sampleFlowRemark1,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update zy_case_prospecting_info
+    set prospecting_id = #{record.prospectingId,jdbcType=INTEGER},
+      case_id = #{record.caseId,jdbcType=INTEGER},
+      undertake_unit = #{record.undertakeUnit,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      `plan` = #{record.plan,jdbcType=VARCHAR},
+      temperature = #{record.temperature,jdbcType=VARCHAR},
+      weather = #{record.weather,jdbcType=VARCHAR},
+      humidity = #{record.humidity,jdbcType=VARCHAR},
+      ray = #{record.ray,jdbcType=VARCHAR},
+      scene_desc = #{record.sceneDesc,jdbcType=VARCHAR},
+      scene_map_file_id = #{record.sceneMapFileId,jdbcType=BIGINT},
+      sample_flow_type = #{record.sampleFlowType,jdbcType=INTEGER},
+      sample_flow_remark2 = #{record.sampleFlowRemark2,jdbcType=VARCHAR},
+      signatures = #{record.signatures,jdbcType=VARCHAR},
+      witness = #{record.witness,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      add_uid = #{record.addUid,jdbcType=BIGINT},
+      last_update = #{record.lastUpdate,jdbcType=TIMESTAMP},
+      begin_time = #{record.beginTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      sample_flow_remark1 = #{record.sampleFlowRemark1,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zy_case_prospecting_info
+    set prospecting_id = #{record.prospectingId,jdbcType=INTEGER},
+      case_id = #{record.caseId,jdbcType=INTEGER},
+      undertake_unit = #{record.undertakeUnit,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      `plan` = #{record.plan,jdbcType=VARCHAR},
+      temperature = #{record.temperature,jdbcType=VARCHAR},
+      weather = #{record.weather,jdbcType=VARCHAR},
+      humidity = #{record.humidity,jdbcType=VARCHAR},
+      ray = #{record.ray,jdbcType=VARCHAR},
+      scene_desc = #{record.sceneDesc,jdbcType=VARCHAR},
+      scene_map_file_id = #{record.sceneMapFileId,jdbcType=BIGINT},
+      sample_flow_type = #{record.sampleFlowType,jdbcType=INTEGER},
+      sample_flow_remark2 = #{record.sampleFlowRemark2,jdbcType=VARCHAR},
+      signatures = #{record.signatures,jdbcType=VARCHAR},
+      witness = #{record.witness,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      add_uid = #{record.addUid,jdbcType=BIGINT},
+      last_update = #{record.lastUpdate,jdbcType=TIMESTAMP},
+      begin_time = #{record.beginTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfo" >
+    update zy_case_prospecting_info
+    <set >
+      <if test="caseId != null" >
+        case_id = #{caseId,jdbcType=INTEGER},
+      </if>
+      <if test="undertakeUnit != null" >
+        undertake_unit = #{undertakeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="plan != null" >
+        `plan` = #{plan,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        temperature = #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="weather != null" >
+        weather = #{weather,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        humidity = #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="ray != null" >
+        ray = #{ray,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneDesc != null" >
+        scene_desc = #{sceneDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneMapFileId != null" >
+        scene_map_file_id = #{sceneMapFileId,jdbcType=BIGINT},
+      </if>
+      <if test="sampleFlowType != null" >
+        sample_flow_type = #{sampleFlowType,jdbcType=INTEGER},
+      </if>
+      <if test="sampleFlowRemark2 != null" >
+        sample_flow_remark2 = #{sampleFlowRemark2,jdbcType=VARCHAR},
+      </if>
+      <if test="signatures != null" >
+        signatures = #{signatures,jdbcType=VARCHAR},
+      </if>
+      <if test="witness != null" >
+        witness = #{witness,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUid != null" >
+        add_uid = #{addUid,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdate != null" >
+        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sampleFlowRemark1 != null" >
+        sample_flow_remark1 = #{sampleFlowRemark1,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where prospecting_id = #{prospectingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfo" >
+    update zy_case_prospecting_info
+    set case_id = #{caseId,jdbcType=INTEGER},
+      undertake_unit = #{undertakeUnit,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      `plan` = #{plan,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      weather = #{weather,jdbcType=VARCHAR},
+      humidity = #{humidity,jdbcType=VARCHAR},
+      ray = #{ray,jdbcType=VARCHAR},
+      scene_desc = #{sceneDesc,jdbcType=VARCHAR},
+      scene_map_file_id = #{sceneMapFileId,jdbcType=BIGINT},
+      sample_flow_type = #{sampleFlowType,jdbcType=INTEGER},
+      sample_flow_remark2 = #{sampleFlowRemark2,jdbcType=VARCHAR},
+      signatures = #{signatures,jdbcType=VARCHAR},
+      witness = #{witness,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_uid = #{addUid,jdbcType=BIGINT},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      sample_flow_remark1 = #{sampleFlowRemark1,jdbcType=LONGVARCHAR}
+    where prospecting_id = #{prospectingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfo" >
+    update zy_case_prospecting_info
+    set case_id = #{caseId,jdbcType=INTEGER},
+      undertake_unit = #{undertakeUnit,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      `plan` = #{plan,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      weather = #{weather,jdbcType=VARCHAR},
+      humidity = #{humidity,jdbcType=VARCHAR},
+      ray = #{ray,jdbcType=VARCHAR},
+      scene_desc = #{sceneDesc,jdbcType=VARCHAR},
+      scene_map_file_id = #{sceneMapFileId,jdbcType=BIGINT},
+      sample_flow_type = #{sampleFlowType,jdbcType=INTEGER},
+      sample_flow_remark2 = #{sampleFlowRemark2,jdbcType=VARCHAR},
+      signatures = #{signatures,jdbcType=VARCHAR},
+      witness = #{witness,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_uid = #{addUid,jdbcType=BIGINT},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where prospecting_id = #{prospectingId,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlDialectSuffix" >
+    <if test="pageHelper != null" >
+      <![CDATA[ limit #{pageHelper.begin}, #{pageHelper.length}]]>
+    </if>
+  </sql>
+  <insert id="insertBatch" parameterType="com.example.demo.common.entity.auto.ZyCaseProspectingInfo" >
+    insert into zy_case_prospecting_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      prospecting_id,case_id,undertake_unit,address,plan,temperature,weather,humidity,ray,scene_desc,scene_map_file_id,sample_flow_type,sample_flow_remark2,signatures,witness,add_time,add_uid,last_update,begin_time,end_time,sample_flow_remark1,
+    </trim>
+    values
+    <foreach collection="list" index="index" item="item" separator="," >
+      (
+      <trim suffixOverrides="," >
+        #{item.prospectingId,jdbcType=INTEGER},#{item.caseId,jdbcType=INTEGER},#{item.undertakeUnit,jdbcType=VARCHAR},#{item.address,jdbcType=VARCHAR},#{item.plan,jdbcType=VARCHAR},#{item.temperature,jdbcType=VARCHAR},#{item.weather,jdbcType=VARCHAR},#{item.humidity,jdbcType=VARCHAR},#{item.ray,jdbcType=VARCHAR},#{item.sceneDesc,jdbcType=VARCHAR},#{item.sceneMapFileId,jdbcType=BIGINT},#{item.sampleFlowType,jdbcType=INTEGER},#{item.sampleFlowRemark2,jdbcType=VARCHAR},#{item.signatures,jdbcType=VARCHAR},#{item.witness,jdbcType=VARCHAR},#{item.addTime,jdbcType=TIMESTAMP},#{item.addUid,jdbcType=BIGINT},#{item.lastUpdate,jdbcType=TIMESTAMP},#{item.beginTime,jdbcType=TIMESTAMP},#{item.endTime,jdbcType=TIMESTAMP},#{item.sampleFlowRemark1,jdbcType=LONGVARCHAR},
+      </trim>
+      )
+    </foreach>
+  </insert>
+</mapper>
